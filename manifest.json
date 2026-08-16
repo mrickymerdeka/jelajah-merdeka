@@ -1,6 +1,6 @@
 {
-  "name": "Nama Aplikasi Saya",
-  "short_name": "NamaApp",
+  "name": "Jelajah Merdeka",
+  "short_name": "JahMerdeka",
   "description": "Aplikasi hasil dari Google AI Studio",
   "start_url": "./index.html",
   "display": "standalone",
