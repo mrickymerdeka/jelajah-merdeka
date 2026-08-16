@@ -48,7 +48,7 @@ export interface PresetProfile {
 export interface AndroidExportFile {
   filename: string;
   filepath: string;
-  language: 'kotlin' | 'xml' | 'groovy' | 'gradle';
+  language: 'kotlin' | 'xml' | 'groovy' | 'gradle' | 'yaml' | 'json' | 'markdown' | 'text';
   content: string;
   description: string;
 }

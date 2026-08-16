@@ -423,6 +423,68 @@ dependencies {
 }
 `;
 
+  const rootBuildGradleKts = `// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+}
+`;
+
+  const settingsGradleKts = `pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "DedicatedKioskBrowser"
+include(":app")
+`;
+
+  const githubWorkflowYml = `name: Build Android APK
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew || true
+
+    - name: Build with Gradle
+      run: ./gradlew assembleRelease || ./gradlew assembleDebug
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Dedicated-Kiosk-Browser-APK
+        path: app/build/outputs/apk/**/*.apk
+        retention-days: 30
+`;
+
   return [
     {
       filename: 'MainActivity.kt',
@@ -460,11 +522,32 @@ dependencies {
       description: 'Enforces HTTPS encryption and drops cleartext transmission.',
     },
     {
-      filename: 'build.gradle.kts',
+      filename: 'app/build.gradle.kts',
       filepath: 'app/build.gradle.kts',
       language: 'gradle',
       content: buildGradleKts,
-      description: 'Gradle build configuration with AndroidX WebKit dependencies.',
+      description: 'App-level Gradle build configuration with AndroidX WebKit dependencies.',
+    },
+    {
+      filename: 'build-apk.yml',
+      filepath: '.github/workflows/build-apk.yml',
+      language: 'yaml',
+      content: githubWorkflowYml,
+      description: 'GitHub Actions workflow to automatically compile and generate the native APK in the cloud for free without Android Studio.',
+    },
+    {
+      filename: 'settings.gradle.kts',
+      filepath: 'settings.gradle.kts',
+      language: 'gradle',
+      content: settingsGradleKts,
+      description: 'Project settings declaring module repositories.',
+    },
+    {
+      filename: 'build.gradle.kts',
+      filepath: 'build.gradle.kts',
+      language: 'gradle',
+      content: rootBuildGradleKts,
+      description: 'Root Gradle configuration file.',
     },
   ];
 }
