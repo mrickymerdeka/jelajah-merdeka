@@ -9,7 +9,7 @@
   "icons": [
     {
       "src": "launchericon-192x192.png",
-      "sizes": "512x512",
+      "sizes": "912x912",
       "type": "image/png",
       "purpose": "any maskable"
     }
