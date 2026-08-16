@@ -9,6 +9,6 @@
   "start_url": "/",
   "theme_color": "#ffffff",
   "id": "16092026-mrm",
-  "description": "MyFirstPWABuilder"
-  "src": "icon.ico",
+  "description": "MyFirstPWABuilder",
+  "src": "icon.ico"
 }
