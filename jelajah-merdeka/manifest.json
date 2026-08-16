@@ -1,0 +1,13 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "mrickymerdeka.github",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "mrickymerdeka.github",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "id": "16092026-mrm",
+  "description": "MyFirstPWABuilder"
+}
