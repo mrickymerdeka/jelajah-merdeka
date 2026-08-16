@@ -1,8 +1,0 @@
-{
-  "name": "Jelajah Merdeka",
-  "description": "Dedicated Android Kiosk Browser restricted strictly to https://mr-merdeka.blogspot.com and https://merdeka.infinityfreeapp.com/absen/?i\u003d1 with hidden URL bar, zero ads, and anti-injection shield.",
-  "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
-}
